@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco-Conscious Artist Registration</title>
+</head>
+<body>
+    <h1>Become a Volunteer</h1>
+    <p>We’re gathering a niche crowd of musicians, eco-conscious and genuinely obsessed with nature. If you draw inspiration from being outdoors, under the open sky, adore the pink hues of sunset, and feel the magic of moonlit nights, you’re in the right place. From catching a cold in winter rain to watching the autumn leaves turn a new shade, we’re all about celebrating nature’s little wonders. If you’re passionate about the environment and drawn to its wisdom, sign up here and meet your fellow musical nature enthusiasts:</p>
+
+    <h2>🎤 Join Our Eco-Conscious Movement! 🌱🎶</h2>
+    <p>Welcome, eco-conscious artists! We're excited to collaborate with like-minded musicians who share our passion for sustainability. Before you proceed, please note our selection criteria:</p>
+    <ul>
+        <li>🌿 Respect, love, and interest for Mother Nature</li>
+        <li>💬 Inclusivity and Respect for people from all Backgrounds</li>
+        <li>🎵 Serious Musicianship with Artistic values and online presence</li>
+        <li>🤝 Collaborative Spirit and Mutual Support</li>
+    </ul>
+    <p>If you align with these values, fill out the registration form below. Let's create music that makes a positive impact! 🌍🎤</p>
+
+    <form id="registrationForm">
+        <label for="fullName">Full Name:</label><br>
+        <input type="text" id="fullName" name="fullName" required><br><br>
+
+        <label for="email">Email Address:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="artistName">Artist Name / Stage Name:</label><br>
+        <input type="text" id="artistName" name="artistName" required><br><br>
+
+        <label for="bio">Artist Bio / Introduction:</label><br>
+        <textarea id="bio" name="bio" required></textarea><br><br>
+
+        <label for="socialHandles">Website / Best Performing Social Handles:</label><br>
+        <input type="text" id="socialHandles" name="socialHandles" required><br><br>
+
+        <label for="platforms">Which of the following platforms do you actively use for your music promotion and engagement?</label><br>
+        <input type="checkbox" id="instagram" name="platforms" value="Instagram"> Instagram<br>
+        <input type="checkbox" id="twitter" name="platforms" value="Twitter"> Twitter<br>
+        <input type="checkbox" id="facebook" name="platforms" value="Facebook"> Facebook<br>
+        <input type="checkbox" id="youtube" name="platforms" value="YouTube"> YouTube<br>
+        <input type="checkbox" id="soundcloud" name="platforms" value="SoundCloud"> SoundCloud<br>
+        <input type="checkbox" id="spotify" name="platforms" value="Spotify"> Spotify<br>
+        <input type="checkbox" id="tiktok" name="platforms" value="TikTok"> TikTok<br>
+        <input type="checkbox" id="other" name="platforms" value="Other"> Other<br><br>
+
+        <label for="ecoConscious">How do you incorporate eco-consciousness into your artistry?</label><br>
+        <textarea id="ecoConscious" name="ecoConscious" required></textarea><br><br>
+
+        <label for="demoLink">Please provide a link to a relevant demo or song that aligns with our eco-conscious project:</label><br>
+        <input type="url" id="demoLink" name="demoLink" required><br><br>
+
+        <label for="interest">What interests you in collaborating with us on our eco-conscious music project? How do you envision contributing to our community and the project's goals?</label><br>
+        <textarea id="interest" name="interest" required></textarea><br><br>
+
+        <label for="additionalInfo">Is there anything else you'd like us to know about you or your artistic journey?</label><br>
+        <textarea id="additionalInfo" name="additionalInfo"></textarea><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(this);
+            const emailData = {
+                fullName: formData.get('fullName'),
+                email: formData.get('email'),
+                artistName: formData.get('artistName'),
+                bio: formData.get('bio'),
+                socialHandles: formData.get('socialHandles'),
+                platforms: formData.getAll('platforms'),
+                ecoConscious: formData.get('ecoConscious'),
+                demoLink: formData.get('demoLink'),
+                interest: formData.get('interest'),
+                additionalInfo: formData.get('additionalInfo'),
+            };
+
+            fetch('https://api.example.com/send-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(emailData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Thank you for your submission!');
+                document.getElementById('registrationForm').reset();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was an error with your submission. Please try again later.');
+            });
+        });
+    </script>
+</body>
+</html>
